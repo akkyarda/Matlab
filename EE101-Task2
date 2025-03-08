@@ -1,0 +1,26 @@
+% To determine variables
+w0= 2*pi;
+T= 10;
+fs=50;
+t= 0:1/fs:T;
+x= sin(w0*t);
+
+figure; %To plot graph of x vs t
+plot(t,x);
+xlabel("t (seconds)");
+ylabel("x(t)");
+title("X(t) vs t");
+
+freq_x= frequencyAnalyzer(x, fs); %To call the function
+disp(['Dominant frequencies in the input signal: ' num2str(freq_x) ' Hz']);
+
+y= sin(w0*t)+sin(2*w0*t) - 4*sin(3*w0*t);
+
+figure; %To plot graph of y vs t
+plot(t,y);
+xlabel("t (seconds)");
+ylabel("y(t)");
+title("Y(t) vs t");
+
+freq_y = frequencyAnalyzer(y, fs); %To call  the function again
+disp(['Dominant frequencies in the input signal: ' num2str(freq_y) ' Hz']);
