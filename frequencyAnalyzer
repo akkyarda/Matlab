@@ -1,0 +1,22 @@
+function freq_x= frequencyAnalyzer(x, fs)
+    X= fft(x);
+    magX= abs(X);
+    N= length(X);
+    f= fs*(0:N-1)/N;
+    
+    magX=magX(1:round(N/2));%To eliminate symetry
+    f=f(1:round(N/2));
+
+    figure; %Plot the spectrum
+    plot(f,magX);
+    xlabel("Frequency(Hz)");
+    ylabel("Spectrum Magnitude");
+    title("Spectrum Magnitude vs Frequency"); 
+
+    max_value= max(magX); %To determine thresholdvalue
+    thresholdValue= max_value/10;
+
+    [m n]= find(magX > thresholdValue); %To find the values that exceeds threshold
+    freq_x= f(n); % freq_x= f(m, n) is an error??????
+
+end
